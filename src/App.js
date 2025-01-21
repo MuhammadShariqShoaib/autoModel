@@ -9,6 +9,9 @@ import Contact from './Contact';
 import InfoPage from './Landingpage';
 import BlogPage from './Blog_iden';
 import ProgressPage from './Progress';
+import ThreeDModelBlog from './ThreeDModelBlog';
+import ChatSupportBlog from './ChatSupportBlog';
+import AutoModel from './AutoModel';
 
 function App() {
   return (
@@ -20,7 +23,9 @@ function App() {
         <Route path="/Support" element={<Contact/>} />
         <Route path="/start-identification" element={<Cariden/>} />
         <Route path="/Progress" element={<ProgressPage/>} />
-
+        <Route path="/ThreeDModelBlog" element={<ThreeDModelBlog/>} />
+        <Route path="/ChatSupportBlog" element={<ChatSupportBlog/>} />
+        <Route path="/AutoModel" element={<AutoModel/>} />
         
 
        
