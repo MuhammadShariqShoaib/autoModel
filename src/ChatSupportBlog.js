@@ -10,7 +10,7 @@ const ChatSupportBlog = () => {
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: 'user', text: userInput },
-        { sender: 'bot', text: 'hello bsdk? keya kaam hai' },
+        { sender: 'bot', text: 'hello ? keya kaam hai' },
       ]);
       setUserInput('');
     }
