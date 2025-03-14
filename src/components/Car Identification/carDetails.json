@@ -1,0 +1,57 @@
+{
+    "cars": [
+      {
+        "name": "Suzuki Mehran",
+        "model": "VX",
+        "variant": "Standard",
+        "price": "$5,000",
+        "specifications": {
+          "engine": "796 cc",
+          "mileage": "18 km/l",
+          "fuel_type": "Petrol",
+          "seating_capacity": "5",
+          "transmission": "Manual"
+        }
+      },
+      {
+        "name": "Suzuki Cultus",
+        "model": "VXL",
+        "variant": "Automatic",
+        "price": "$9,500",
+        "specifications": {
+          "engine": "998 cc",
+          "mileage": "19 km/l",
+          "fuel_type": "Petrol",
+          "seating_capacity": "5",
+          "transmission": "Automatic"
+        }
+      },
+      {
+        "name": "Honda Civic",
+        "model": "2023",
+        "variant": "Turbo",
+        "price": "$30,000",
+        "specifications": {
+          "engine": "1498 cc",
+          "mileage": "12 km/l",
+          "fuel_type": "Petrol",
+          "seating_capacity": "5",
+          "transmission": "Automatic"
+        }
+      },
+      {
+        "name": "Toyota Corolla",
+        "model": "Altis",
+        "variant": "Grande",
+        "price": "$28,000",
+        "specifications": {
+          "engine": "1798 cc",
+          "mileage": "14 km/l",
+          "fuel_type": "Petrol",
+          "seating_capacity": "5",
+          "transmission": "Automatic"
+        }
+      }
+    ]
+  }
+  
