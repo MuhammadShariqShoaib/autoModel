@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
+import Home from './components/Pages/Home';
 // import CarDetection from './CarDetection';
 // import Support from './Support';
 // import Customization from './Customization';
 import Cariden from './Cariden';
-import Contact from './Contact';
-import InfoPage from './Landingpage';
+import Contact from './components/Pages/Contact';
+import InfoPage from './components/Pages/Landingpage';
 import BlogPage from './Blog_iden';
 import ProgressPage from './Progress';
 import ThreeDModelBlog from './ThreeDModelBlog';
