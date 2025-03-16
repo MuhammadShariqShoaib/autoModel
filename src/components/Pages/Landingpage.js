@@ -1,101 +1,72 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUser, SignInButton, SignedOut, SignedIn } from '@clerk/clerk-react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser, SignInButton, SignedOut, SignedIn } from "@clerk/clerk-react";
+import { FaCar, FaTools, FaLightbulb, FaUsers, FaChartLine, FaCube } from "react-icons/fa";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import { FcGoogle } from "react-icons/fc";
 
 const InfoPage = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    if (isSignedIn) {
-      navigate('/Get-Started');
-    } else {
-      navigate('/sign-in');
-    }
+    navigate(isSignedIn ? "/Get-Started" : "/sign-in");
   };
 
+  const features = [
+    { icon: <FaCar />, title: "Why AutoModel Insight?", desc: "Instantly identify car make, model, and variant using AI-powered image recognition." },
+    { icon: <FaTools />, title: "How It Works?", desc: "Our AI scans your car photo, analyzes details, and presents an interactive 3D model." },
+    { icon: <FaLightbulb />, title: "What Makes Us Different?", desc: "Beyond detection, we provide deep insights into car specs, conditions, and features." },
+    { icon: <FaCube />, title: "Advanced Features", desc: "3D car models, damage analysis, and custom configurations for detailed insights." },
+    { icon: <FaUsers />, title: "Who Can Use It?", desc: "Perfect for car dealers, buyers, and enthusiasts looking for in-depth vehicle analysis." },
+    { icon: <FaChartLine />, title: "Future Vision", desc: "Expanding our AI model to support all global car manufacturers with precision." },
+  ];
+
   return (
+    <>
+    <Navbar/>
     <div
-      className="min-h-screen bg-gray-800 text-white bg-cover bg-center"
-      style={{ backgroundImage: "url('/landing.jpg')" }}
+      className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col justify-center items-center"
+      // style={{ backgroundImage: "url('/landing.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
-      <div className="bg-gray-900 bg-opacity-75 min-h-screen">
-        <header className="text-center py-8">
-          <h1 className="text-4xl font-bold mb-4">AutoModel Insight</h1>
-          <p className="text-lg">Revolutionizing car identification with cutting-edge technology.</p>
+      <div className=" min-h-screen w-full px-6 md:px-12 py-12">
+        {/* Header */}
+        <header className="text-center mb-12">
+          <h1 className="text-5xl font-extrabold text-white tracking-wide">AutoModel Insight</h1>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mt-4">
+            AI-powered car identification and analysis at your fingertips.
+          </p>
         </header>
 
-               {/* Information Cards Section */}
-               <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12">
-          {/* Card 1 */}
-          <div className="bg-yellow-400 text-black p-4 rounded-lg shadow-md transform rotate-2">
-            <h2 className="text-2xl font-bold mb-2">Why AutoModel Insight?</h2>
-            <p>
-              AutoModel Insight provides instant identification of car make, model, and variant with a simple photo.
-              It's fast, reliable, and user-friendly.
-            </p>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-blue-400 text-black p-4 rounded-lg shadow-md transform -rotate-1">
-            <h2 className="text-2xl font-bold mb-2">How It Works?</h2>
-            <p>
-              Using advanced image recognition and machine learning algorithms, we detect car details and display a
-              3D model for customization.
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-green-400 text-black p-4 rounded-lg shadow-md transform rotate-3">
-            <h2 className="text-2xl font-bold mb-2">What Makes Us Different?</h2>
-            <p>
-              Our platform doesn’t just identify cars; it also provides detailed information about the car’s features.
-            </p>
-          </div>
-
-          {/* Card 4 */}
-          <div className="bg-pink-400 text-black p-4 rounded-lg shadow-md transform -rotate-2">
-            <h2 className="text-2xl font-bold mb-2">Our Features</h2>
-            <ul className="list-disc pl-5">
-              <li>3D car model visualization</li>
-              <li>Car condition analysis</li>
-              <li>Customizable car configurations</li>
-              <li>Focused on Suzuki Pakistan cars</li>
-            </ul>
-          </div>
-
-          {/* Card 5 */}
-          <div className="bg-orange-400 text-black p-4 rounded-lg shadow-md transform rotate-1">
-            <h2 className="text-2xl font-bold mb-2">Who Can Use It?</h2>
-            <p>
-              Auto dealers, car enthusiasts, and anyone looking for detailed car insights can benefit from our
-              platform.
-            </p>
-          </div>
-
-          {/* Card 6 */}
-          <div className="bg-purple-400 text-black p-4 rounded-lg shadow-md transform -rotate-3">
-            <h2 className="text-2xl font-bold mb-2">Future Vision</h2>
-            <p>
-              We aim to expand our database to include all car manufacturers globally and integrate AI-driven insights
-              for our user.
-            </p>
-          </div>
+        {/* Features Section */}
+        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 bg-opacity-60 p-6 rounded-xl shadow-lg backdrop-blur-lg flex flex-col items-center text-center transition-all hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="text-blue-400 text-4xl mb-4">{feature.icon}</div>
+              <h2 className="text-xl font-semibold text-white">{feature.title}</h2>
+              <p className="text-gray-300 mt-2">{feature.desc}</p>
+            </div>
+          ))}
         </main>
 
-        <footer className="text-center py-8 mt-12">
+        {/* Call to Action */}
+        <footer className=" mt-12 text-center">
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="bg-red-500 hover:bg-red-600 text-white px-12 py-2 rounded-lg m-2 shadow-md">
-                Sign In
-              </button>
+            <button className="   gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg shadow-md transition-all transform hover:scale-105">
+Continue with Google
+      </button>
             </SignInButton>
           </SignedOut>
 
           <SignedIn>
             <button
               onClick={handleGetStarted}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg m-2 shadow-md"
+              className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-lg shadow-md transition-all"
             >
               Get Started
             </button>
@@ -103,6 +74,8 @@ const InfoPage = () => {
         </footer>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -14,6 +14,19 @@
         }
       },
       {
+        "name": "Suzuki Alto",
+        "model": "VX",
+        "variant": "Standard",
+        "price": "$5,000",
+        "specifications": {
+          "engine": "660 cc",
+          "mileage": "18 km/l",
+          "fuel_type": "Petrol",
+          "seating_capacity": "5",
+          "transmission": "Manual"
+        }
+      },
+      {
         "name": "Suzuki Cultus",
         "model": "VXL",
         "variant": "Automatic",

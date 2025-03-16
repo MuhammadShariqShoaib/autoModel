@@ -1,42 +1,68 @@
-import React from 'react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useDropzone } from "react-dropzone";
+import Image from "next/image";
 
-const ProgressPage = () => {
+const ImageComparisonUpload = () => {
+  const [image, setImage] = useState(null);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      const file = acceptedFiles[0];
+      setImage(URL.createObjectURL(file));
+    },
+  });
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center px-6">
-      {/* Background Animation Section */}
-      <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-20" 
-        style={{ backgroundImage: "url('https://source.unsplash.com/1600x900/?technology,cars')" }}>
+    <div className="flex gap-6 p-6 bg-black min-h-screen items-center justify-center">
+      {/* Image Comparison */}
+      <div className="relative w-80 h-80 bg-yellow-500 rounded-xl overflow-hidden">
+        <div className="absolute inset-0 w-1/2 bg-black"></div>
+        <motion.div
+          className="absolute inset-0 w-1/2 bg-black"
+          initial={{ width: "50%" }}
+          animate={{ width: "50%" }}
+          transition={{ duration: 0.5 }}
+        />
+        <Image
+          src="/sample-image.jpg"
+          alt="Comparison Image"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0"
+        />
       </div>
 
-      <div className="relative text-center">
-        {/* Title */}
-        <h1 className="text-4xl font-extrabold mb-6">Work In Progress</h1>
-        
-        {/* Animated Image or Loader */}
-        <div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
-        >
-          <img
-            src="progress.jpg"
-            alt="Progress Animation"
-            className="rounded-full border-4 border-blue-500 shadow-lg mx-auto"
+      {/* Image Upload */}
+      <div
+        {...getRootProps()}
+        className="w-80 h-80 flex flex-col items-center justify-center border-2 border-dashed border-gray-600 bg-gray-900 rounded-xl cursor-pointer hover:border-yellow-400"
+      >
+        <input {...getInputProps()} />
+        {image ? (
+          <Image
+            src={image}
+            alt="Uploaded Image"
+            width={300}
+            height={300}
+            className="rounded-lg"
           />
-        </div>
-
-        {/* Progress Text */}
-        <p className="text-lg mt-6">
-          We are diligently working to bring you the best experience. Please check back later for updates.
-        </p>
-
-        {/* Get Started Button */}
-        <button className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md">
-          Get Started
-        </button>
+        ) : (
+          <div className="flex flex-col items-center text-gray-400">
+            <motion.div
+              className="w-12 h-12 bg-yellow-500 flex items-center justify-center rounded-full"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ repeat: Infinity, duration: 1 }}
+            >
+              <span className="text-black text-2xl">↑</span>
+            </motion.div>
+            <p className="mt-2 text-sm">Click or drag here to upload images</p>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default ProgressPage;
+export default ImageComparisonUpload;

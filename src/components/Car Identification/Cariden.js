@@ -154,9 +154,10 @@
 
 // export default Cariden;
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Pages/Navbar";
+import Navbar from "../Pages/Navbar";
 import carDetails from "./carDetails.json"; // Import JSON file
 import { RingLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 function Cariden() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -191,7 +192,7 @@ function Cariden() {
       const interval = setInterval(() => {
         setLoadingText(messages[index]);
         index = (index + 1) % messages.length;
-      }, 6000);
+      }, 2000);
       return () => clearInterval(interval);
     }
   }, [showLoader]);
@@ -207,7 +208,7 @@ function Cariden() {
     formData.append("image", selectedImage);
 
     try {
-      const response = await fetch("http://127.0.0.1:5004/identify_car", {
+      const response = await fetch("http://127.0.0.1:5000/identify_car", {
         method: "POST",
         body: formData,
       });
@@ -247,8 +248,8 @@ function Cariden() {
   return (
     <>
       <Navbar />
-      <div className="relative min-h-screen bg-gray-900 text-white flex items-center justify-center px-6">
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-75"></div>
+      <div className=" min-h-screen bg-gray-900 text-white flex items-center justify-center px-6">
+        <div className=" inset-0 bg-gray-900 bg-opacity-75"></div>
 
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
           <div className="bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8 text-gray-300">
@@ -319,6 +320,13 @@ function Cariden() {
                     <p>Engine: {carInfo.specifications.engine}</p>
                     <p>Fuel Type: {carInfo.specifications.fuel_type}</p>
                     <p>Mileage: {carInfo.specifications.mileage}</p>
+                    <Link
+                      to="/carSpecs"
+                      className="text-red-900 hover:text-red font-bold border-b-2 border-transparent hover:border-red-900 transition duration-300"
+                    >
+                      Click here to see Car Details....
+                    </Link>
+
                   </>
                 ) : (
                   <p>No details available for this car.</p>
