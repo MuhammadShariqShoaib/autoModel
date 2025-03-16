@@ -6,7 +6,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className={`w-full ${isOpen ? "h-20" : "h-12"} bg-gray-950 text-white transition-all duration-300  flex flex-col p-4 shadow-lg border-b border-gray-700`}>
+    <div className={`w-full ${isOpen ? "h-20" : "h-12"} pb-28 lg:pb-2 bg-gray-950 text-white transition-all duration-300  flex flex-col p-4 shadow-lg border-b border-gray-700`}>
       <button className="text-xl self-end mb-2 focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </button>
