@@ -1,0 +1,355 @@
+
+[
+  {
+    "Model": "Honda Vezell",
+    "Make": "Honda",
+    "Variant": "Hybrid Z",
+    "Price": "PKR 4,500,000",
+    "Engine": "1.5L Hybrid i-VTEC",
+    "FuelType": "Hybrid",
+    "Mileage": "20 km/l",
+    "Transmission": "Automatic",
+    "Seats": 5,
+    "Horsepower": "130 HP",
+    "Torque": "155 Nm",
+    "Description": "A hybrid crossover with fuel efficiency, a modern design, and advanced safety features.",
+    "ExteriorInterior": {
+      "Headlights": "LED Projector",
+      "Infotainment": "8-inch touchscreen with Apple CarPlay & Android Auto",
+      "Upholstery": "Leather",
+      "Sunroof": "Yes"
+    },
+    "SafetySecurity": {
+      "Airbags": "6",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4330 mm",
+      "Width": "1770 mm",
+      "Height": "1605 mm",
+      "Boot Space": "448 L"
+    },
+    "Reviews": [
+      {
+        "name": "Ali Raza",
+        "comment": "Great car with amazing performance!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Zain Khan",
+        "comment": "Comfortable and stylish, but fuel economy could be better.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Honda BRV",
+    "Make": "Honda",
+    "Variant": "i-VTEC S",
+    "Price": "PKR 4,200,000",
+    "Engine": "1.5L i-VTEC",
+    "FuelType": "Petrol",
+    "Mileage": "16 km/l",
+    "Transmission": "CVT",
+    "Seats": 7,
+    "Horsepower": "118 HP",
+    "Torque": "145 Nm",
+    "Description": "A spacious 7-seater SUV with a powerful engine, excellent road grip, and great ground clearance.",
+    "ExteriorInterior": {
+      "Headlights": "Halogen",
+      "Infotainment": "7-inch touchscreen with Bluetooth & USB",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "2",
+      "ABS": "Yes",
+      "Lane Assist": "No",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4453 mm",
+      "Width": "1735 mm",
+      "Height": "1666 mm",
+      "Boot Space": "223 L"
+    },
+    "Reviews": [
+      {
+        "name": "Ali Raza",
+        "comment": "Great car with amazing performance!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Zain Khan",
+        "comment": "Comfortable and stylish, but fuel economy could be better.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Suzuki Alto",
+    "Make": "Suzuki",
+    "Variant": "VXR",
+    "Price": "PKR 2,200,000",
+    "Engine": "660cc R06A",
+    "FuelType": "Petrol",
+    "Mileage": "22 km/l",
+    "Transmission": "Manual",
+    "Seats": 4,
+    "Horsepower": "39 HP",
+    "Torque": "56 Nm",
+    "Description": "A compact city car with excellent fuel efficiency and an economical price.",
+    "ExteriorInterior": {
+      "Headlights": "Halogen",
+      "Infotainment": "Basic Audio System",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "None",
+      "ABS": "No",
+      "Lane Assist": "No",
+      "Rear Camera": "No"
+    },
+    "DimensionsCapacity": {
+      "Length": "3395 mm",
+      "Width": "1475 mm",
+      "Height": "1490 mm",
+      "Boot Space": "125 L"
+    },
+    "Reviews": [
+      {
+        "name": "Ali Raza",
+        "comment": "Great car with amazing performance!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Zain Khan",
+        "comment": "Comfortable and stylish, but fuel economy could be better.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Honda Civic",
+    "Make": "Honda",
+    "Variant": "Oriel 1.5L Turbo",
+    "Price": "PKR 8,500,000",
+    "Engine": "1.5L VTEC Turbo",
+    "FuelType": "Petrol",
+    "Mileage": "14 km/l",
+    "Transmission": "CVT",
+    "Seats": 5,
+    "Horsepower": "176 HP",
+    "Torque": "220 Nm",
+    "Description": "A premium sedan with a sporty design, turbocharged engine, and advanced features.",
+    "ExteriorInterior": {
+      "Headlights": "LED Projector",
+      "Infotainment": "9-inch touchscreen with Apple CarPlay & Android Auto",
+      "Upholstery": "Leather",
+      "Sunroof": "Yes"
+    },
+    "SafetySecurity": {
+      "Airbags": "6",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4674 mm",
+      "Width": "1802 mm",
+      "Height": "1415 mm",
+      "Boot Space": "409 L"
+    },
+    "Reviews": [
+      {
+        "name": "Ali Raza",
+        "comment": "Great car with amazing performance!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Zain Khan",
+        "comment": "Comfortable and stylish, but fuel economy could be better.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Suzuki Mehran",
+    "Make": "Suzuki",
+    "Variant": "VX",
+    "Price": "PKR 1,300,000",
+    "Engine": "800cc F8B",
+    "FuelType": "Petrol",
+    "Mileage": "18 km/l",
+    "Transmission": "Manual",
+    "Seats": 4,
+    "Horsepower": "39 HP",
+    "Torque": "59 Nm",
+    "Description": "A budget-friendly, fuel-efficient compact car widely used in Pakistan.",
+    "ExteriorInterior": {
+      "Headlights": "Halogen",
+      "Infotainment": "Basic Audio System",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "None",
+      "ABS": "No",
+      "Lane Assist": "No",
+      "Rear Camera": "No"
+    },
+    "DimensionsCapacity": {
+      "Length": "3300 mm",
+      "Width": "1405 mm",
+      "Height": "1410 mm",
+      "Boot Space": "150 L"
+    },
+    "Reviews": [
+      {
+        "name": "Faisal Ahmad",
+        "comment": "Best car for daily use and low maintenance.",
+        "rating": "4.5/5"
+      },
+      {
+        "name": "Hassan Tariq",
+        "comment": "Affordable but lacks safety features.",
+        "rating": "3/5"
+      }
+    ]
+  },
+  {
+    "Model": "Toyota Land Cruiser",
+    "Make": "Toyota",
+    "Variant": "ZX 3.5L Twin-Turbo",
+    "Price": "PKR 80,000,000",
+    "Engine": "3.5L V6 Twin-Turbo",
+    "FuelType": "Petrol",
+    "Mileage": "8 km/l",
+    "Transmission": "Automatic",
+    "Seats": 7,
+    "Horsepower": "409 HP",
+    "Torque": "650 Nm",
+    "Description": "A luxury full-size SUV with high performance, advanced off-road capabilities, and premium features.",
+    "ExteriorInterior": {
+      "Headlights": "LED",
+      "Infotainment": "12.3-inch touchscreen with JBL sound system",
+      "Upholstery": "Leather",
+      "Sunroof": "Yes"
+    },
+    "SafetySecurity": {
+      "Airbags": "10",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4980 mm",
+      "Width": "1980 mm",
+      "Height": "1950 mm",
+      "Boot Space": "1131 L"
+    },
+    "Reviews": [
+      {
+        "name": "Saad Ali",
+        "comment": "Unmatched luxury and power!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Umair Khan",
+        "comment": "Expensive but worth every penny for off-road driving.",
+        "rating": "4.5/5"
+      }
+    ]
+  },
+  {
+    "Model": "Toyota Corolla",
+    "Make": "Toyota",
+    "Variant": "Altis Grande 1.8L CVT",
+    "Price": "PKR 6,500,000",
+    "Engine": "1.8L 2ZR-FE",
+    "FuelType": "Petrol",
+    "Mileage": "12 km/l",
+    "Transmission": "CVT",
+    "Seats": 5,
+    "Horsepower": "138 HP",
+    "Torque": "173 Nm",
+    "Description": "A reliable and fuel-efficient sedan with modern styling and safety features.",
+    "ExteriorInterior": {
+      "Headlights": "LED",
+      "Infotainment": "9-inch touchscreen with Apple CarPlay & Android Auto",
+      "Upholstery": "Leather",
+      "Sunroof": "Yes"
+    },
+    "SafetySecurity": {
+      "Airbags": "6",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4620 mm",
+      "Width": "1775 mm",
+      "Height": "1460 mm",
+      "Boot Space": "470 L"
+    },
+    "Reviews": [
+      {
+        "name": "Bilal Ahmed",
+        "comment": "Very reliable and comfortable ride.",
+        "rating": "5/5"
+      },
+      {
+        "name": "Naveed Raza",
+        "comment": "Solid build quality but lacks advanced features compared to competitors.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Toyota Prius",
+    "Make": "Toyota",
+    "Variant": "1.8L Hybrid",
+    "Price": "PKR 8,000,000",
+    "Engine": "1.8L Hybrid Synergy Drive",
+    "FuelType": "Hybrid",
+    "Mileage": "25 km/l",
+    "Transmission": "CVT",
+    "Seats": 5,
+    "Horsepower": "121 HP",
+    "Torque": "142 Nm",
+    "Description": "A highly fuel-efficient hybrid sedan with advanced technology and eco-friendly performance.",
+    "ExteriorInterior": {
+      "Headlights": "LED",
+      "Infotainment": "8-inch touchscreen with Apple CarPlay & Android Auto",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "7",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4570 mm",
+      "Width": "1760 mm",
+      "Height": "1470 mm",
+      "Boot Space": "502 L"
+    },
+    "Reviews": [
+      {
+        "name": "Usman Javed",
+        "comment": "Best hybrid car with great fuel efficiency!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Tariq Mehmood",
+        "comment": "Smooth ride but the design is not very appealing.",
+        "rating": "4/5"
+      }
+    ]
+  }
+]
