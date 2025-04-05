@@ -3,7 +3,22 @@ import Navbar from "../Pages/Navbar";
 import { RingLoader } from "react-spinners";
 import carData from "./carDetails.json"; // Import the local JSON file
 import { Link } from "react-router-dom";
-
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import {
+  useUser,
+  SignInButton,
+  SignedOut,
+  SignedIn,
+} from "@clerk/clerk-react";
+import Footer from "../Pages/Footer";
 function Cariden() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
@@ -57,7 +72,18 @@ function Cariden() {
       setLoading(false);
     }
   };
-
+  const accuracyData = [
+    { epoch: 1, accuracy: 10 },
+    { epoch: 2, accuracy: 29 },
+    { epoch: 3, accuracy: 38 },
+    { epoch: 4, accuracy: 44 },
+    { epoch: 5, accuracy: 50 },
+    { epoch: 6, accuracy: 62 },
+    { epoch: 7, accuracy:  68},
+    { epoch: 8, accuracy: 72 },
+    { epoch: 9, accuracy: 75 },
+    { epoch: 10, accuracy: 80 },
+  ];
   const fetchDetails = (model) => {
     setFetchingDetails(true);
     setError(null);
@@ -100,27 +126,76 @@ function Cariden() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center px-6">
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
-          {/* Upload Section */}
-          <div className="bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8 text-gray-300">
-            <h2 className="text-2xl font-bold text-center mb-6">Upload Car Image</h2>
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 py-10 gap-12">
 
-            {previewImage ? (
-              <div className="mb-4 flex flex-col items-center">
-                <img
-                  src={previewImage}
-                  alt="Selected Car"
-                  className="max-w-full h-48 object-cover rounded-lg shadow-md mb-2"
+        {/* Chart Section */}
+        <div className="w-full max-w-4xl">
+          <h2 className="text-3xl font-extrabold text-center text-blue-500 mb-6">
+            AI Model Accuracy Over Time
+          </h2>
+          <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={accuracyData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="epoch"
+                  label={{
+                    value: "Epochs",
+                    position: "insideBottom",
+                    dy: 10,
+                    fill: "white",
+                  }}
+                  stroke="white"
                 />
+                <YAxis
+                  domain={[50, 100]}
+                  label={{
+                    value: "Accuracy (%)",
+                    angle: -90,
+                    position: "insideLeft",
+                    fill: "white",
+                  }}
+                  stroke="white"
+                />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="accuracy"
+                  stroke="#22d3ee"
+                  strokeWidth={3}
+                  dot={{ fill: "white" }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="w-full border-t-2 border-gray-500 my-2"></div>
+
+
+          {/* Upload & Car Details Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
+          {/* Upload Section */}
+          <div className="bg-gray-800 bg-opacity-90 rounded-xl shadow-xl p-6 md:p-8 text-gray-300">
+            <h2 className="text-2xl font-bold text-center mb-6">Upload Car Image</h2>
+  
+            <div className="mb-4 flex flex-col items-center">
+              <img
+                src={previewImage || "/preview.jpg"}
+                alt="Selected Car"
+                className="max-w-full h-48 object-cover rounded-lg shadow-md mb-2"
+              />
+              {previewImage && (
                 <button
                   onClick={handleClearSelection}
                   className="text-sm text-red-400 hover:text-red-500 transition"
                 >
                   Clear Selection
                 </button>
-              </div>
-            ) : (
+              )}
+            </div>
+  
+            {!previewImage && (
               <>
                 <label
                   htmlFor="carImageUpload"
@@ -137,7 +212,7 @@ function Cariden() {
                 />
               </>
             )}
-
+  
             {selectedImage && (
               <button
                 className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105 mt-4"
@@ -147,12 +222,11 @@ function Cariden() {
                 {loading ? "Detecting Car Model..." : "Detect Car Model"}
               </button>
             )}
-
+  
             {error && <p className="text-red-400 text-sm text-center mt-3">{error}</p>}
           </div>
-
           {/* Car Details Section */}
-          <div className="bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8 text-gray-300 flex flex-col items-center justify-center min-h-[200px]">
+          <div className="bg-gray-800 bg-opacity-90 rounded-xl shadow-xl p-6 md:p-8 text-gray-300 flex flex-col items-center justify-center min-h-[300px]">
             {loading ? (
               <>
                 <RingLoader color="#36D7B7" size={100} />
@@ -163,7 +237,7 @@ function Cariden() {
                 <h2 className="text-2xl font-bold text-center mb-6">Car Details</h2>
                 {carModel ? (
                   <>
-                    <h3 className="text-xl font-bold">{carModel}</h3>
+                    <h3 className="text-xl font-bold text-blue-400 mb-2">{carModel}</h3>
                     {!carInfo ? (
                       <button
                         className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-6 py-1 rounded-lg transition-transform transform hover:scale-105"
@@ -173,26 +247,25 @@ function Cariden() {
                         {fetchingDetails ? "Fetching Details..." : "Show Details"}
                       </button>
                     ) : (
-                      <div className="mt-4 text-left">
-                        <p>Description: {carInfo.Description || "N/A"}</p>
-                        <p>Make: {carInfo.Make || "N/A"}</p>
-                        <p>Variant: {carInfo.Variant || "N/A"}</p>
-                        <p>Engine: {carInfo.engine || "N/A"}</p>
-                        <p>FuelType: {carInfo.FuelType || "N/A"}</p>
-                        <p>Mileage: {carInfo.Mileage || "N/A"}</p>
-                        <p>Transmission: {carInfo.Transmission || "N/A"}</p>
-                        <p>Seats: {carInfo.Seats || "N/A"}</p>
-                        <p>Horsepower: {carInfo.Horsepower || "N/A"}</p>
-                        <p>Torque: {carInfo.Torque || "N/A"}</p>
-                        <p>Price: {carInfo.Price || "N/A"}</p>
+                      <div className="mt-4 text-left space-y-1">
+                        <p><span className="font-semibold">Description:</span> {carInfo.Description || "N/A"}</p>
+                        <p><span className="font-semibold">Make:</span> {carInfo.Make || "N/A"}</p>
+                        <p><span className="font-semibold">Variant:</span> {carInfo.Variant || "N/A"}</p>
+                        <p><span className="font-semibold">Engine:</span> {carInfo.engine || "N/A"}</p>
+                        <p><span className="font-semibold">Fuel Type:</span> {carInfo.FuelType || "N/A"}</p>
+                        <p><span className="font-semibold">Mileage:</span> {carInfo.Mileage || "N/A"}</p>
+                        <p><span className="font-semibold">Transmission:</span> {carInfo.Transmission || "N/A"}</p>
+                        <p><span className="font-semibold">Seats:</span> {carInfo.Seats || "N/A"}</p>
+                        <p><span className="font-semibold">Horsepower:</span> {carInfo.Horsepower || "N/A"}</p>
+                        <p><span className="font-semibold">Torque:</span> {carInfo.Torque || "N/A"}</p>
+                        <p><span className="font-semibold">Price:</span> {carInfo.Price || "N/A"}</p>
                       </div>
                     )}
-
-<Link
+                    <Link
                       to="/carSpecs"
-                      className="text-red-900 hover:text-red font-bold border-b-2 border-transparent hover:border-red-900 transition duration-300"
+                      className="block mt-4 text-blue-400 hover:underline text-sm font-semibold"
                     >
-                      Click here to see Car Details....
+                      View More Car Specifications →
                     </Link>
                   </>
                 ) : (
@@ -204,194 +277,14 @@ function Cariden() {
             )}
           </div>
         </div>
+
+
       </div>
+      <Footer/>
     </>
   );
+  
+  
 }
 
 export default Cariden;
-
-// [
-//   {
-//     "Model": "Honda Vezell",
-//     "Make": "Honda",
-//     "Variant": "Hybrid Z",
-//     "Price": "PKR 4,500,000",
-//     "Engine": "1.5L Hybrid i-VTEC",
-//     "FuelType": "Hybrid",
-//     "Mileage": "20 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "130 HP",
-//     "Torque": "155 Nm",
-//     "Description": "A hybrid crossover with fuel efficiency, a modern design, and advanced safety features."
-//   },
-//   {
-//     "Model": "Honda BRV",
-//     "Make": "Honda",
-//     "Variant": "i-VTEC S",
-//     "Price": "PKR 4,200,000",
-//     "Engine": "1.5L i-VTEC",
-//     "FuelType": "Petrol",
-//     "Mileage": "16 km/l",
-//     "Transmission": "CVT",
-//     "Seats": 7,
-//     "Horsepower": "118 HP",
-//     "Torque": "145 Nm",
-//     "Description": "A spacious 7-seater SUV with a powerful engine, excellent road grip, and great ground clearance."
-//   },
-//   {
-//     "Model": "Suzuki Alto",
-//     "Make": "Suzuki",
-//     "Variant": "VXR",
-//     "Price": "PKR 2,200,000",
-//     "Engine": "660cc R06A",
-//     "FuelType": "Petrol",
-//     "Mileage": "22 km/l",
-//     "Transmission": "Manual",
-//     "Seats": 4,
-//     "Horsepower": "39 HP",
-//     "Torque": "56 Nm",
-//     "Description": "A compact city car with excellent fuel efficiency and an economical price."
-//   },
-//   {
-//     "Model": "Toyota Corolla",
-//     "Make": "Toyota",
-//     "Variant": "Altis Grande 1.8",
-//     "Price": "PKR 6,200,000",
-//     "Engine": "1.8L Dual VVT-i",
-//     "FuelType": "Petrol",
-//     "Mileage": "14 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "138 HP",
-//     "Torque": "173 Nm",
-//     "Description": "A reliable sedan with high resale value, smooth driving experience, and modern safety features."
-//   },
-//   {
-//     "Model": "Suzuki Cultus",
-//     "Make": "Suzuki",
-//     "Variant": "VXL Auto",
-//     "Price": "PKR 3,500,000",
-//     "Engine": "1.0L K10B",
-//     "FuelType": "Petrol",
-//     "Mileage": "18 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "67 HP",
-//     "Torque": "90 Nm",
-//     "Description": "A fuel-efficient hatchback with a comfortable interior, modern infotainment, and safety features."
-//   },
-//   {
-//     "Model": "Toyota Fortuner",
-//     "Make": "Toyota",
-//     "Variant": "Legender 2.8L",
-//     "Price": "PKR 15,500,000",
-//     "Engine": "2.8L Diesel Turbo",
-//     "FuelType": "Diesel",
-//     "Mileage": "12 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 7,
-//     "Horsepower": "201 HP",
-//     "Torque": "500 Nm",
-//     "Description": "A luxury SUV with off-road capabilities, a premium interior, and a powerful diesel engine."
-//   },
-//   {
-//     "Model": "Toyota Aqua",
-//     "Make": "Toyota",
-//     "Variant": "S",
-//     "Price": "PKR 4,000,000",
-//     "Engine": "1.5L Hybrid",
-//     "FuelType": "Hybrid",
-//     "Mileage": "25 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "99 HP",
-//     "Torque": "120 Nm",
-//     "Description": "A fuel-efficient hybrid hatchback with eco-friendly technology and smart driving features."
-//   },
-//   {
-//     "Model": "Toyota Landcruser",
-//     "Make": "Toyota",
-//     "Variant": "ZX",
-//     "Price": "PKR 40,000,000",
-//     "Engine": "3.5L V6 Twin-Turbo",
-//     "FuelType": "Petrol",
-//     "Mileage": "10 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 7,
-//     "Horsepower": "409 HP",
-//     "Torque": "650 Nm",
-//     "Description": "A premium full-size SUV with exceptional off-road performance and luxury features."
-//   },
-//   {
-//     "Model": "Honda Civic",
-//     "Make": "Honda",
-//     "Variant": "Oriel 1.8L",
-//     "Price": "PKR 8,000,000",
-//     "Engine": "1.8L i-VTEC",
-//     "FuelType": "Petrol",
-//     "Mileage": "12 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "138 HP",
-//     "Torque": "174 Nm",
-//     "Description": "A stylish and fuel-efficient sedan known for its reliability and advanced safety features."
-//   },
-//   {
-//     "Model": "KIA Sportage",
-//     "Make": "KIA",
-//     "Variant": "AWD",
-//     "Price": "PKR 9,000,000",
-//     "Engine": "2.0L MPI",
-//     "FuelType": "Petrol",
-//     "Mileage": "10 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "155 HP",
-//     "Torque": "196 Nm",
-//     "Description": "A modern compact SUV with advanced features, spacious interior, and an all-wheel-drive option."
-//   },
-//   {
-//     "Model": "Suzuki Khyber",
-//     "Make": "Suzuki",
-//     "Variant": "GA",
-//     "Price": "PKR 350,000",
-//     "Engine": "1.0L Carburetor",
-//     "FuelType": "Petrol",
-//     "Mileage": "14 km/l",
-//     "Transmission": "Manual",
-//     "Seats": 5,
-//     "Horsepower": "55 HP",
-//     "Torque": "78 Nm",
-//     "Description": "A classic hatchback known for its affordability, fuel efficiency, and easy maintenance."
-//   },
-//   {
-//     "Model": "Suzuki Mehran",
-//     "Make": "Suzuki",
-//     "Variant": "VX",
-//     "Price": "PKR 800,000",
-//     "Engine": "0.8L Carburetor",
-//     "FuelType": "Petrol",
-//     "Mileage": "16 km/l",
-//     "Transmission": "Manual",
-//     "Seats": 5,
-//     "Horsepower": "39 HP",
-//     "Torque": "59 Nm",
-//     "Description": "A budget-friendly hatchback with excellent fuel economy, ideal for daily city commuting."
-//   },
-//   {
-//     "Model": "Toyota Prius",
-//     "Make": "Toyota",
-//     "Variant": "Hybrid",
-//     "Price": "PKR 12,000,000",
-//     "Engine": "1.8L Hybrid Synergy Drive",
-//     "FuelType": "Hybrid",
-//     "Mileage": "22 km/l",
-//     "Transmission": "Automatic",
-//     "Seats": 5,
-//     "Horsepower": "121 HP",
-//     "Torque": "142 Nm",
-//     "Description": "A popular hybrid vehicle with outstanding fuel efficiency, eco-friendly features, and a comfortable ride."
-//   }
-// ]

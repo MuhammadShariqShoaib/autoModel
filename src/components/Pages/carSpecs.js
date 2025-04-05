@@ -14,6 +14,7 @@ const CarSpecs = () => {
       const selectedCar = carDataJson.find((car) => car.Model === storedCarName);
       setCarData(selectedCar || null);
 
+      
       // Dynamically generate image paths
       const images = [1, 2, 3].map(
         (num) => `/Images/${storedCarName}/${num}.jpeg`

@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { useUser, SignInButton, SignedOut, SignedIn } from "@clerk/clerk-react";
+
 import { FaCar, FaTools, FaLightbulb, FaUsers, FaChartLine, FaCube } from "react-icons/fa";
 
 const modules = [
@@ -55,6 +55,8 @@ const Home = () => {
     { icon: <FaChartLine />, title: "Future Vision", desc: "Expanding our AI model to support all global car manufacturers with precision." },
   ];
 
+
+
   return (
     <>
       <Navbar />
@@ -65,32 +67,46 @@ const Home = () => {
             A cutting-edge AI-powered platform for car make, model, and variant detection, 3D car customization, and
             real-time damage analysis. Revolutionizing the automotive industry with advanced AI and deep learning.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-6 mt-6">
             <Link to='/Progress'>
-              <button className="px-6 py-3 bg-blue-600 text-white text-lg rounded-lg shadow-lg hover:bg-blue-700 transition">
+              <button className="px-8 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
                 View Demo
               </button>
             </Link>
             <a
               href="/sample.docx"
               download="Sample.docx"
-              className="px-6 py-3 bg-green-600 text-white text-lg rounded-lg shadow-lg hover:bg-green-700 transition"
+              className="px-8 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
             >
               Documentation
             </a>
           </div>
-          <Link to='/start-identification'>
-              <button className="px-6 my-3 py-3 bg-red-600 text-white text-lg rounded-lg shadow-lg hover:bg-blue-700 transition">
-                Try  model
+
+
+          <div className="mt-4 mb-10">
+            <Link to='/start-identification'>
+              <button className="px-8 py-3 text-lg font-semibold bg-blue-800  text-white   rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+                Try Model
               </button>
             </Link>
-
+          </div>
         </div>
 
-
+        <main className="grid grid-cols-1 text-center  md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 bg-opacity-60 p-6 rounded-xl shadow-lg backdrop-blur-lg flex flex-col items-center text-center transition-all hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="text-blue-400 text-4xl mb-4">{feature.icon}</div>
+              <h2 className="text-xl font-semibold text-white">{feature.title}</h2>
+              <p className="text-gray-300 mt-2">{feature.desc}</p>
+            </div>
+          ))}
+        </main>
 
         <div className="mt-10 max-w-6xl  text-center">
-          <h2 className="text-3xl font-bold text-blue-400 mb-8">How It Works</h2>
+          <h2 className="text-3xl font-bold text-blue-400 mb-8">How to Use</h2>
           <p className="text-lg mb-6 text-gray-300">
             Our AI system processes car images to identify details and provide customization options.
           </p>
@@ -113,7 +129,6 @@ const Home = () => {
             ))}
           </div>
         </div>
-
 
         {/* Impact & Scope Section */}
         <div className="mt-16 max-w-6xl text-center">

@@ -221,7 +221,7 @@
     ]
   },
   {
-    "Model": "Toyota Land Cruiser",
+    "Model": "Toyota Landcruser",
     "Make": "Toyota",
     "Variant": "ZX 3.5L Twin-Turbo",
     "Price": "PKR 80,000,000",
@@ -349,6 +349,226 @@
         "name": "Tariq Mehmood",
         "comment": "Smooth ride but the design is not very appealing.",
         "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "KIA Sportage",
+    "Make": "Kia",
+    "Variant": "AWD",
+    "Price": "PKR 8,500,000",
+    "Engine": "2.0L MPI",
+    "FuelType": "Petrol",
+    "Mileage": "10 km/l",
+    "Transmission": "Automatic",
+    "Seats": 5,
+    "Horsepower": "155 HP",
+    "Torque": "196 Nm",
+    "Description": "A stylish and powerful SUV with modern features and all-wheel drive capability.",
+    "ExteriorInterior": {
+      "Headlights": "LED",
+      "Infotainment": "8-inch touchscreen with Apple CarPlay & Android Auto",
+      "Upholstery": "Leather",
+      "Sunroof": "Yes"
+    },
+    "SafetySecurity": {
+      "Airbags": "6",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4485 mm",
+      "Width": "1855 mm",
+      "Height": "1655 mm",
+      "Boot Space": "491 L"
+    },
+    "Reviews": [
+      {
+        "name": "Ali Raza",
+        "comment": "Great family SUV with a comfortable ride!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Zain Khan",
+        "comment": "Good features but fuel economy could be better.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Suzuki Cultus",
+    "Make": "Suzuki",
+    "Variant": "VXL",
+    "Price": "PKR 3,500,000",
+    "Engine": "1.0L K10B",
+    "FuelType": "Petrol",
+    "Mileage": "18 km/l",
+    "Transmission": "Manual",
+    "Seats": 5,
+    "Horsepower": "67 HP",
+    "Torque": "90 Nm",
+    "Description": "A compact hatchback known for its fuel efficiency and affordability.",
+    "ExteriorInterior": {
+      "Headlights": "Halogen",
+      "Infotainment": "7-inch touchscreen with Bluetooth",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "2",
+      "ABS": "Yes",
+      "Lane Assist": "No",
+      "Rear Camera": "No"
+    },
+    "DimensionsCapacity": {
+      "Length": "3600 mm",
+      "Width": "1600 mm",
+      "Height": "1540 mm",
+      "Boot Space": "254 L"
+    },
+    "Reviews": [
+      {
+        "name": "Bilal Ahmed",
+        "comment": "Very economical and easy to maintain.",
+        "rating": "4.5/5"
+      },
+      {
+        "name": "Naveed Raza",
+        "comment": "Basic features but good for daily commuting.",
+        "rating": "4/5"
+      }
+    ]
+  },
+  {
+    "Model": "Suzuki Khyber",
+    "Make": "Suzuki",
+    "Variant": "GA",
+    "Price": "PKR 800,000",
+    "Engine": "1.0L G10",
+    "FuelType": "Petrol",
+    "Mileage": "15 km/l",
+    "Transmission": "Manual",
+    "Seats": 5,
+    "Horsepower": "55 HP",
+    "Torque": "78 Nm",
+    "Description": "A classic hatchback with low maintenance cost and reliable performance.",
+    "ExteriorInterior": {
+      "Headlights": "Halogen",
+      "Infotainment": "Basic Audio System",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "None",
+      "ABS": "No",
+      "Lane Assist": "No",
+      "Rear Camera": "No"
+    },
+    "DimensionsCapacity": {
+      "Length": "3800 mm",
+      "Width": "1560 mm",
+      "Height": "1380 mm",
+      "Boot Space": "250 L"
+    },
+    "Reviews": [
+      {
+        "name": "Faisal Ahmad",
+        "comment": "Very durable and cheap to maintain.",
+        "rating": "4/5"
+      },
+      {
+        "name": "Hassan Tariq",
+        "comment": "Outdated but still a good city car.",
+        "rating": "3.5/5"
+      }
+    ]
+  },
+  {
+    "Model": "Toyota Aqua",
+    "Make": "Toyota",
+    "Variant": "G",
+    "Price": "PKR 4,000,000",
+    "Engine": "1.5L Hybrid Synergy Drive",
+    "FuelType": "Hybrid",
+    "Mileage": "28 km/l",
+    "Transmission": "CVT",
+    "Seats": 5,
+    "Horsepower": "98 HP",
+    "Torque": "120 Nm",
+    "Description": "A compact hybrid hatchback with exceptional fuel efficiency and smooth driving experience.",
+    "ExteriorInterior": {
+      "Headlights": "LED",
+      "Infotainment": "7-inch touchscreen with Apple CarPlay",
+      "Upholstery": "Fabric",
+      "Sunroof": "No"
+    },
+    "SafetySecurity": {
+      "Airbags": "6",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4050 mm",
+      "Width": "1695 mm",
+      "Height": "1455 mm",
+      "Boot Space": "305 L"
+    },
+    "Reviews": [
+      {
+        "name": "Ali Raza",
+        "comment": "Best fuel economy in its class!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Zain Khan",
+        "comment": "A bit expensive but worth it for hybrid performance.",
+        "rating": "4.5/5"
+      }
+    ]
+  },
+  {
+    "Model": "Toyota Fortuner",
+    "Make": "Toyota",
+    "Variant": "Legender 2.8L Diesel",
+    "Price": "PKR 18,500,000",
+    "Engine": "2.8L Turbo Diesel",
+    "FuelType": "Diesel",
+    "Mileage": "12 km/l",
+    "Transmission": "Automatic",
+    "Seats": 7,
+    "Horsepower": "204 HP",
+    "Torque": "500 Nm",
+    "Description": "A powerful and rugged SUV with luxury features and off-road capabilities.",
+    "ExteriorInterior": {
+      "Headlights": "LED Projector",
+      "Infotainment": "9-inch touchscreen with JBL sound system",
+      "Upholstery": "Leather",
+      "Sunroof": "Yes"
+    },
+    "SafetySecurity": {
+      "Airbags": "7",
+      "ABS": "Yes",
+      "Lane Assist": "Yes",
+      "Rear Camera": "Yes"
+    },
+    "DimensionsCapacity": {
+      "Length": "4795 mm",
+      "Width": "1855 mm",
+      "Height": "1835 mm",
+      "Boot Space": "296 L"
+    },
+    "Reviews": [
+      {
+        "name": "Saad Ali",
+        "comment": "Unbeatable for long road trips and off-roading!",
+        "rating": "5/5"
+      },
+      {
+        "name": "Umair Khan",
+        "comment": "Powerful but expensive.",
+        "rating": "4.5/5"
       }
     ]
   }

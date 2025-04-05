@@ -1,71 +1,65 @@
 import React, { useState } from "react";
-import { FaCar, FaBalanceScale, FaListAlt, FaDollarSign, FaBars, FaTimes } from "react-icons/fa";
+import { FaCar } from "react-icons/fa";
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
-const variants = [
-    {
-      name: "Suzuki Alto 2005",
-      image: "/alto2005.jpeg",
-      price: "PKR 800,000",
-      engine: "1000cc Inline-4",
-      transmission: "5-Speed Manual",
-      fuelEconomy: "15 km/l",
-    },
-    {
-      name: "Suzuki Alto 2010",
-      image: "/alto2010.jpg",
-      price: "PKR 1,200,000",
-      engine: "1000cc Inline-4",
-      transmission: "4-Speed Automatic",
-      fuelEconomy: "16 km/l",
-    },
-    {
-      name: "Suzuki Alto 2015",
-      image: "/alto2015.jpeg",
-      price: "PKR 1,600,000",
-      engine: "660cc R06A Inline-3",
-      transmission: "CVT Automatic",
-      fuelEconomy: "22 km/l",
-    },
-    {
-      name: "Suzuki Alto 2020",
-      image: "/Alto.jpg",
-      price: "PKR 2,200,000",
-      engine: "660cc R06A Inline-3",
-      transmission: "AGS Automatic",
-      fuelEconomy: "24 km/l",
-    },
-];
-
 const CarVariants = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [variants, setVariants] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchCarVariants = async () => {
+    const carName = localStorage.getItem("carModel");
+    if (!carName) {
+      alert("No car name found in localStorage");
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await fetch("http://127.0.0.1:5004/get_variants", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ car_name: carName }),
+      });
+      if (!response.ok) throw new Error("Failed to fetch variants");
+      const data = await response.json();
+      console.log("Fetched Variants Data:", data); // Debugging
+      setVariants(data.variants);
+    } catch (error) {
+      console.error("Error fetching variants:", error);
+    }
+    setLoading(false);
+  };
 
   return (
     <>
       <Navbar />
-       <Sidebar/>
-      <div className="flex min-h-screen bg-black text-white ">
-        {/* Sidebar Navigation */}
+      <Sidebar />
+      <div className="flex min-h-screen bg-black text-white p-6 flex-col items-center">
+        <button
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg mb-6"
+          onClick={fetchCarVariants}
+          disabled={loading}
+        >
+          {loading ? "Fetching..." : "Show Variants"}
+        </button>
 
-        {/* Main Content */}
-        <div className={`bg-gray-900 p-6 flex-1  transition-all duration-300`}>
-          <h1 className="text-3xl font-bold text-gray-100 mb-6">Suzuki Alto Variants</h1>
-          
-          {/* Variant Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {variants.map((variant, index) => (
-              <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
-                <img src={variant.image} alt={variant.name} className="w-full h-48 object-cover rounded-md" />
-                <h2 className="text-xl font-semibold mt-4">{variant.name}</h2>
-                <p className="text-gray-300">Price: <span className="text-green-400">{variant.price}</span></p>
-                <p className="text-gray-300">Engine: {variant.engine}</p>
-                <p className="text-gray-300">Transmission: {variant.transmission}</p>
-                <p className="text-gray-300">Fuel Economy: {variant.fuelEconomy}</p>
-              </div>
-            ))}
-          </div>
+        <div className="w-full max-w-4xl">
+          {variants.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {variants.map((variant, index) => (
+                <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
+                  <img src={variant.image} alt={variant.name} className="w-full h-48 object-cover rounded-md" />
+                  <h2 className="text-xl font-semibold mt-4">{variant.name}</h2>
+                  <p className="text-gray-300">Price: <span className="text-green-400">{variant.price}</span></p>
+                  <p className="text-gray-300">Engine: {variant.engine}</p>
+                  <p className="text-gray-300">Transmission: {variant.transmission}</p>
+                  <p className="text-gray-300">Fuel Economy: {variant.fuel_economy}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-400">Click the button to fetch car variants.</p>
+          )}
         </div>
       </div>
     </>
