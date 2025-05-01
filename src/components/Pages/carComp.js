@@ -1,116 +1,94 @@
-import { useState } from "react";
-import { FaArrowLeft, FaBalanceScale } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import { motion } from "framer-motion";
 
 const CarComparison = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // Hardcoded comparison data (Replace with API data later)
-  const cars = [
-    {
-      name: "Suzuki Alto 2024",
-      image: "/Alto.jpg",
-      engine: "660cc R06A",
-      horsepower: "39 HP",
-      torque: "56 Nm",
-      fuelEconomy: "22-25 km/l",
-      price: "PKR 3,200,000",
-    },
-    {
-      name: "Suzuki Wagon R 2024",
-      image: "/weg.jpeg",
-      engine: "1000cc K10B",
-      horsepower: "67 HP",
-      torque: "90 Nm",
-      fuelEconomy: "18-22 km/l",
-      price: "PKR 3,800,000",
-    },
-    {
-        name: "Suzuki cultus2024",
-        image: "/cultus.jpg",
-        engine: "1000cc K10B",
-        horsepower: "67 HP",
-        torque: "90 Nm",
-        fuelEconomy: "18-22 km/l",
-        price: "PKR 3,900,000",
-      },
-    {
-        name: "Kia Picanto 2024",
-        image: "/picanto.jpeg",
-        engine: "1000cc MPI",
-        horsepower: "68 HP",
-        torque: "96 Nm",
-        transmission: "5-Speed Manual / 4-Speed Automatic",
-        fuelEconomy: "15-18 km/l",
-        price: "PKR 3,800,000",
-      },
-  ];
+  const fetchCarComparisons = async () => {
+    const carName = localStorage.getItem("carModel");
+    if (!carName) {
+      alert("No car name found in localStorage");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch("http://127.0.0.1:5004/compare_cars", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ car_name: carName }),
+      });
+      if (!response.ok) throw new Error("Failed to fetch comparisons");
+      const data = await response.json();
+      console.log("car comp is :",data.comparisons)
+      setCars(data.comparisons || []);
+    } catch (error) {
+      console.error("Error fetching comparisons:", error);
+      setError("Error fetching car comparison data.");
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCarComparisons();
+  }, []);
 
   return (
     <>
       <Navbar />
-    <Sidebar/>
-      <div className="flex min-h-screen bg-black text-white ">
-        {/* Sidebar */}
+      <Sidebar />
+      <div className="flex min-h-screen bg-gradient-to-br from-black to-gray-900 text-white">
+        <div className="p-6 flex-1">
+        <div className="flex justify-center mb-8">
+  <h1 className="text-4xl font-bold text-white tracking-wide text-center">Car Comparison</h1>
+</div>
 
-        {/* Main Content */}
-        <div className={`bg-gray-900 p-6 flex-1  transition-all duration-300`}>        
-          <h1 className="text-3xl font-bold text-gray-100 mb-6">Car Comparison</h1>
-
-          {/* Car Comparison Table */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-md overflow-x-auto">
-            <table className="w-full text-left text-gray-300">
-              <thead>
-                <tr className="border-b border-gray-600">
-                  <th className="p-2">Feature</th>
-                  {cars.map((car, index) => (
-                    <th key={index} className="p-2">{car.name}</th>
+          {loading ? (
+            <div className="flex justify-center items-center h-40">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-50"></div>
+            </div>
+          ) : error ? (
+            <p className="text-red-500 text-center">{error}</p>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-gray-800 p-6 rounded-xl shadow-xl overflow-x-auto"
+            >
+              <table className="w-full text-left text-gray-300 border-collapse">
+                <thead>
+                  <tr className="bg-gray-700 text-gray-200">
+                    <th className="p-3 text-sm font-semibold">Feature</th>
+                    {cars.map((car, index) => (
+                      <th key={index} className="p-3 text-sm font-semibold text-center">{car.name}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {["engine", "transmission", "fuel_economy", "price"].map((feature) => (
+                    <tr key={feature} className="hover:bg-gray-700 transition-all">
+                      <td className="p-3 capitalize">{feature.replace("_", " ")}</td>
+                      {cars.map((car, index) => (
+                        <td
+                          key={index}
+                          className={`p-3 text-center ${
+                            feature === "price" ? "font-bold text-green-400" : ""
+                          }`}
+                        >
+                          {car[feature]}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-gray-700">
-                  <td className="p-2">Image</td>
-                  {cars.map((car, index) => (
-                    <td key={index} className="p-2">
-                      <img src={car.image} alt={car.name} className="w-32 h-20 object-cover rounded-lg" />
-                    </td>
-                  ))}
-                </tr>
-                <tr className="border-b border-gray-700">
-                  <td className="p-2">Engine</td>
-                  {cars.map((car, index) => (
-                    <td key={index} className="p-2">{car.engine}</td>
-                  ))}
-                </tr>
-                <tr className="border-b border-gray-700">
-                  <td className="p-2">Horsepower</td>
-                  {cars.map((car, index) => (
-                    <td key={index} className="p-2">{car.horsepower}</td>
-                  ))}
-                </tr>
-                <tr className="border-b border-gray-700">
-                  <td className="p-2">Torque</td>
-                  {cars.map((car, index) => (
-                    <td key={index} className="p-2">{car.torque}</td>
-                  ))}
-                </tr>
-                <tr className="border-b border-gray-700">
-                  <td className="p-2">Fuel Economy</td>
-                  {cars.map((car, index) => (
-                    <td key={index} className="p-2">{car.fuelEconomy}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="p-2">Price</td>
-                  {cars.map((car, index) => (
-                    <td key={index} className="p-2 font-bold text-green-400">{car.price}</td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                </tbody>
+              </table>
+            </motion.div>
+          )}
         </div>
       </div>
     </>

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaCar } from "react-icons/fa";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import { motion } from "framer-motion";
 
 const CarVariants = () => {
   const [variants, setVariants] = useState([]);
@@ -22,7 +23,6 @@ const CarVariants = () => {
       });
       if (!response.ok) throw new Error("Failed to fetch variants");
       const data = await response.json();
-      console.log("Fetched Variants Data:", data); // Debugging
       setVariants(data.variants);
     } catch (error) {
       console.error("Error fetching variants:", error);
@@ -30,37 +30,55 @@ const CarVariants = () => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    fetchCarVariants();
+  }, []);
+
   return (
     <>
       <Navbar />
       <Sidebar />
-      <div className="flex min-h-screen bg-black text-white p-6 flex-col items-center">
-        <button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg mb-6"
-          onClick={fetchCarVariants}
-          disabled={loading}
-        >
-          {loading ? "Fetching..." : "Show Variants"}
-        </button>
+      <div className="flex min-h-screen bg-gradient-to-br from-black to-gray-900 text-white p-6 flex-col items-center">
+        <h1 className="text-4xl font-bold text-white mb-8 tracking-wide">Car Variants</h1>
 
-        <div className="w-full max-w-4xl">
-          {variants.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {variants.map((variant, index) => (
-                <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
-                  <img src={variant.image} alt={variant.name} className="w-full h-48 object-cover rounded-md" />
-                  <h2 className="text-xl font-semibold mt-4">{variant.name}</h2>
-                  <p className="text-gray-300">Price: <span className="text-green-400">{variant.price}</span></p>
-                  <p className="text-gray-300">Engine: {variant.engine}</p>
-                  <p className="text-gray-300">Transmission: {variant.transmission}</p>
-                  <p className="text-gray-300">Fuel Economy: {variant.fuel_economy}</p>
+        {loading ? (
+          <div className="flex justify-center items-center h-40">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-50"></div>
+          </div>
+        ) : variants.length > 0 ? (
+          <motion.div
+            className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            {variants.map((variant, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex items-center gap-4">
+                  <FaCar className="text-blue-400 text-3xl" />
+                  <div>
+                    <h2 className="text-xl font-semibold">{variant.name}</h2>
+                    <p className="text-gray-400">Engine: {variant.engine}</p>
+                    <p className="text-gray-400">Transmission: {variant.transmission}</p>
+                    <p className="text-gray-400">Fuel Economy: {variant.fuel_economy}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-400">Click the button to fetch car variants.</p>
-          )}
-        </div>
+                <div className="mt-4 text-right">
+                  <p className="text-sm text-gray-400">Price</p>
+                  <p className="text-green-400 text-lg font-bold">{variant.price}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <div className="text-center">
+            <p className="text-gray-300 text-lg animate-pulse">Fetching car variants...</p>
+          </div>
+        )}
       </div>
     </>
   );

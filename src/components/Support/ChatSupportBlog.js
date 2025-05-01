@@ -1,95 +1,108 @@
 import React, { useState } from 'react';
+// import Navbar from '../Pages/Navbar'; // You can enable it when needed
 
 const ChatSupportBlog = () => {
-  const [chatOpen, setChatOpen] = useState(true); // State to toggle chat box
-  const [messages, setMessages] = useState([]);
-  const [userInput, setUserInput] = useState('');
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    feedback: '',
+  });
 
-  const handleSendMessage = () => {
-    if (userInput.trim() !== '') {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'user', text: userInput },
-        { sender: 'bot', text: 'hello ? keya kaam hai' },
-      ]);
-      setUserInput('');
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch('http://127.0.0.1:5004/submit_feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('Thank you for your feedback!');
+        setFormData({ username: '', email: '', feedback: '' });
+        console.log('Server response:', data);
+      } else {
+        alert('Something went wrong! Try again.');
+        console.error('Server error:', data);
+      }
+    } catch (err) {
+      console.error('Error sending feedback:', err);
+      alert('Failed to connect to server.');
     }
   };
 
   return (
     <div
-      className="relative min-h-screen bg-gray-900 text-white"
+      className="min-h-screen flex items-center justify-center bg-gray-900 text-white"
       style={{
         backgroundImage: "url('landing.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="absolute inset-0 bg-gray-900 bg-opacity-75"></div>
+      <div className="absolute inset-0 bg-gray-900 bg-opacity-80"></div>
 
-      {/* Page Content */}
-      <div className="relative z-10">
-        {/* Header Section */}
-        <header className="text-center py-8 border-b border-gray-700">
-          <h1 className="text-4xl font-extrabold mb-4">AI-Powered Chat Support</h1>
-          <p className="text-lg text-gray-300">
-            Discover how AI CustomBot is transforming customer support and the limitless possibilities of AI-driven assistance.
-          </p>
-        </header>
-
-        {/* Footer Section */}
-        <footer className="text-center py-8 border-t border-gray-700">
-          <button
-            onClick={() => setChatOpen(!chatOpen)}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg shadow-md transition duration-300"
-          >
-            {chatOpen ? 'Close Chat' : 'Chat with AI'}
-          </button>
-        </footer>
-      </div>
-
-      {/* Dummy Chat Box */}
-      {chatOpen && (
-        <div className="fixed bottom-4 right-4 w-80 bg-gray-800 text-white rounded-lg shadow-lg">
-          <div className="bg-blue-600 px-4 py-2 rounded-t-lg">
-            <h3 className="text-lg font-bold">AI Chat Support</h3>
-          </div>
-          <div className="p-4 h-64 overflow-y-auto">
-            {messages.length === 0 && (
-              <p className="text-gray-400 text-sm">Say hi to start the conversation!</p>
-            )}
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`mb-2 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}
-              >
-                <p
-                  className={`inline-block px-4 py-2 rounded-lg ${
-                    msg.sender === 'user' ? 'bg-blue-500' : 'bg-gray-700'
-                  }`}
-                >
-                  {msg.text}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="p-4 border-t border-gray-700">
+      <div className="relative z-10 w-full max-w-lg bg-gray-800 p-8 rounded-xl shadow-xl">
+        <h2 className="text-3xl font-bold mb-6 text-center text-blue-400">
+          Feedback Form
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block mb-1 text-sm text-gray-300">Username</label>
             <input
               type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="Type your message..."
-              className="w-full px-4 py-2 rounded-lg text-gray-900"
+              name="username"
+              placeholder="Enter Username Here"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button
-              onClick={handleSendMessage}
-              className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md"
-            >
-              Send
-            </button>
           </div>
-        </div>
-      )}
+          <div>
+            <label className="block mb-1 text-sm text-gray-300">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email Here"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 text-sm text-gray-300">Your Feedback</label>
+            <textarea
+              name="feedback"
+              value={formData.feedback}
+              onChange={handleChange}
+              required
+              rows={4}
+              placeholder="Write your thoughts here..."
+              className="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition duration-300"
+          >
+            Submit Feedback
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

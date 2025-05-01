@@ -36,6 +36,8 @@ function App() {
           <Route path="/CarComparison" element={<CarComparison />} />
           <Route path="/Sidebar" element={<Sidebar />} />
           <Route path="/CarVariants" element={<CarVariants />} />
+          <Route path="/feedback" element={<ChatSupportBlog />} />
+
         </Routes>
         
         {/* Floating Chat Button */}

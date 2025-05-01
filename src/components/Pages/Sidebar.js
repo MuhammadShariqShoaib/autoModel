@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaCar, FaBalanceScale, FaListAlt, FaDollarSign, FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -12,18 +13,42 @@ const Sidebar = () => {
       </button>
       {isOpen && (
         <nav className="flex justify-center gap-6">
-          <a href="/CarSpecs" className="flex items-center gap-2 text-lg hover:text-gray-400">
+          <NavLink
+            to="/CarSpecs"
+            className={({ isActive }) =>
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              }`
+            }
+          >
             <FaCar /> Car Specs
-          </a>
-          <Link to="/CarComparison" className="flex items-center gap-2 text-lg hover:text-gray-400">
+          </NavLink>
+          <NavLink
+            to="/CarComparison"
+            className={({ isActive }) =>
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              }`
+            }
+          >
             <FaBalanceScale /> Car Comparison
-          </Link>
-          <a href="/CarVariants" className="flex items-center gap-2 text-lg hover:text-gray-400">
+          </NavLink>
+          <NavLink
+            to="/CarVariants"
+            className={({ isActive }) =>
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              }`
+            }
+          >
             <FaListAlt /> Car Variants
-          </a>
-          <a href="/AutoModel" className="flex items-center gap-2 text-lg hover:text-gray-400">
-            <FaDollarSign />Genrate 3D Model
-          </a>
+          </NavLink>
+          <NavLink
+            to="/AutoModel"
+            className={({ isActive }) =>
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              }`
+            }
+          >
+            <FaDollarSign /> Generate 3D Model
+          </NavLink>
         </nav>
       )}
     </div>
