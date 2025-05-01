@@ -49,7 +49,7 @@ const CarComparison = () => {
 
           {loading ? (
             <div className="flex justify-center items-center h-40">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-50"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-orange-500 border-opacity-50"></div>
             </div>
           ) : error ? (
             <p className="text-red-500 text-center">{error}</p>

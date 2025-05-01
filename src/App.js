@@ -44,7 +44,7 @@ function App() {
         <div className="fixed bottom-5 right-5 z-50">
           {!chatOpen ? (
             <button
-              className="bg-blue-500 text-white p-3 rounded-full shadow-lg"
+              className="bg-orange-500 text-white p-3 rounded-full shadow-lg"
               onClick={() => setChatOpen(true)}
             >
               <ChartArea size={40} />

@@ -16,7 +16,7 @@ const Sidebar = () => {
           <NavLink
             to="/CarSpecs"
             className={({ isActive }) =>
-              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-orange-500" : ""
               }`
             }
           >
@@ -25,7 +25,7 @@ const Sidebar = () => {
           <NavLink
             to="/CarComparison"
             className={({ isActive }) =>
-              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-orange-500" : ""
               }`
             }
           >
@@ -34,7 +34,7 @@ const Sidebar = () => {
           <NavLink
             to="/CarVariants"
             className={({ isActive }) =>
-              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-orange-500" : ""
               }`
             }
           >
@@ -43,7 +43,7 @@ const Sidebar = () => {
           <NavLink
             to="/AutoModel"
             className={({ isActive }) =>
-              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-blue-500" : ""
+              `flex items-center gap-2 text-lg hover:text-gray-400 transition ${isActive ? "text-orange-500" : ""
               }`
             }
           >

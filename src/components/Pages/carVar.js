@@ -43,7 +43,7 @@ const CarVariants = () => {
 
         {loading ? (
           <div className="flex justify-center items-center h-40">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-50"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-orange-500 border-opacity-50"></div>
           </div>
         ) : variants.length > 0 ? (
           <motion.div
@@ -59,7 +59,7 @@ const CarVariants = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="flex items-center gap-4">
-                  <FaCar className="text-blue-400 text-3xl" />
+                  <FaCar className="text-orange-400 text-3xl" />
                   <div>
                     <h2 className="text-xl font-semibold">{variant.name}</h2>
                     <p className="text-gray-400">Engine: {variant.engine}</p>

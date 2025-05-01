@@ -62,21 +62,21 @@ const Home = () => {
       <Navbar />
       <div className="bg-gradient-to-b from-gray-900 to-black text-white min-h-screen flex flex-col items-center px-6 md:px-10 lg:px-20 py-10">
         <div className="text-center max-w-4xl">
-          <h1 className="text-5xl font-extrabold text-blue-600 mb-4">Welcome to AutoModel Insight</h1>
+          <h1 className="text-5xl font-extrabold text-orange-600 mb-4">Welcome to AutoModel Insight</h1>
           <p className="text-lg text-gray-300 mb-6">
             A cutting-edge AI-powered platform for car make, model, and variant detection, 3D car customization, and
             real-time damage analysis. Revolutionizing the automotive industry with advanced AI and deep learning.
           </p>
           <div className="flex flex-wrap justify-center gap-6 mt-6">
             <Link to='/Progress'>
-              <button className="px-8 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+              <button className="px-8 py-3 text-lg font-semibold bg-orange-800 text-white rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
                 View Demo
               </button>
             </Link>
             <a
               href="/sample.docx"
               download="Sample.docx"
-              className="px-8 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
+              className="px-8 py-3 text-lg font-semibold bg-orange-800 text-white rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
             >
               Documentation
             </a>
@@ -85,7 +85,7 @@ const Home = () => {
 
           <div className="mt-4 mb-10">
             <Link to='/start-identification'>
-              <button className="px-8 py-3 text-lg font-semibold bg-blue-800  text-white   rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+              <button className="px-8 py-3 text-lg font-semibold bg-orange-800  text-white   rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
                 Try Model
               </button>
             </Link>
@@ -98,7 +98,7 @@ const Home = () => {
               key={index}
               className="bg-gray-800 bg-opacity-60 p-6 rounded-xl shadow-lg backdrop-blur-lg flex flex-col items-center text-center transition-all hover:scale-105 hover:shadow-2xl"
             >
-              <div className="text-blue-400 text-4xl mb-4">{feature.icon}</div>
+              <div className="text-orange-400 text-4xl mb-4">{feature.icon}</div>
               <h2 className="text-xl font-semibold text-white">{feature.title}</h2>
               <p className="text-gray-300 mt-2">{feature.desc}</p>
             </div>
@@ -106,7 +106,7 @@ const Home = () => {
         </main>
 
         <div className="mt-10 max-w-6xl  text-center">
-          <h2 className="text-3xl font-bold text-blue-400 mb-8">How to Use</h2>
+          <h2 className="text-3xl font-bold text-orange-400 mb-8">How to Use</h2>
           <p className="text-lg mb-6 text-gray-300">
             Our AI system processes car images to identify details and provide customization options.
           </p>
@@ -123,7 +123,7 @@ const Home = () => {
                 <div className="absolute -top-6 w-14 h-14 flex items-center justify-center bg-gray-700 text-3xl rounded-full shadow-md">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-semibold mt-10 mb-3 text-blue-400">{item.title}</h3>
+                <h3 className="text-xl font-semibold mt-10 mb-3 text-orange-400">{item.title}</h3>
                 <p className="text-gray-400 text-center">{item.desc}</p>
               </div>
             ))}
@@ -132,12 +132,12 @@ const Home = () => {
 
         {/* Impact & Scope Section */}
         <div className="mt-16 max-w-6xl text-center">
-          <h2 className="text-3xl font-bold text-blue-400 mb-8">Impact & Scope</h2>
+          <h2 className="text-3xl font-bold text-orange-400 mb-8">Impact & Scope</h2>
           <p className="text-lg text-gray-300 mb-6">AutoModel Insight is designed to benefit multiple industries:</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {["Automobile Sales", "Insurance & Claims", "Car Customization"].map((item, index) => (
               <div key={index} className="p-6 bg-gray-800 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold mb-3 text-blue-400">{item}</h3>
+                <h3 className="text-2xl font-semibold mb-3 text-orange-400">{item}</h3>
                 <p className="text-gray-400">Enhancing the way professionals handle vehicles with AI-powered insights.</p>
               </div>
             ))}
@@ -146,7 +146,7 @@ const Home = () => {
 
         {/* Technologies Used */}
         <div className="mt-16 max-w-6xl text-center">
-          <h2 className="text-3xl font-bold text-blue-400 mb-8">Technologies Powering AutoModel Insight</h2>
+          <h2 className="text-3xl font-bold text-orange-400 mb-8">Technologies Powering AutoModel Insight</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {["TensorFlow", "Next.js", "MongoDB", "Three.js"].map((tech, index) => (
               <div key={index} className="p-4 bg-gray-800 rounded-lg shadow-lg text-lg font-semibold">
@@ -158,11 +158,11 @@ const Home = () => {
 
         {/* Reviews Section */}
         <div className="mt-16 max-w-6xl">
-          <h2 className="text-3xl font-bold text-blue-400 mb-8">What Our Users Say</h2>
+          <h2 className="text-3xl font-bold text-orange-400 mb-8">What Our Users Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reviews.map((review, index) => (
               <div key={index} className="bg-gray-800 p-6  rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold  mb-3 text-blue-400">{review.name}</h3>
+                <h3 className="text-xl font-semibold  mb-3 text-orange-400">{review.name}</h3>
                 <p>"{review.review}"</p>
               </div>
             ))}
@@ -170,11 +170,11 @@ const Home = () => {
         </div>
         {/* FAQ Section */}
         <div className="mt-16 max-w-6xl">
-          <h2 className="text-3xl font-bold text-blue-400 mb-8">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-orange-400 mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold mb-3 text-blue-400">{faq.question}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-orange-400">{faq.question}</h3>
                 <p>{faq.answer}</p>
               </div>
             ))}

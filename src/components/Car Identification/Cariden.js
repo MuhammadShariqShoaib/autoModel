@@ -36,6 +36,7 @@ function Cariden() {
       setCarModel(storedCarModel);
       fetchDetails(storedCarModel);
     }
+    localStorage.removeItem("carModel");
   }, []);
 
   const identifyCarModel = async () => {
@@ -130,7 +131,7 @@ function Cariden() {
 
         {/* Chart Section */}
         <div className="w-full max-w-4xl">
-          <h2 className="text-3xl font-extrabold text-center text-blue-500 mb-6">
+          <h2 className="text-3xl font-extrabold text-center text-orange-500 mb-6">
             AI Model Accuracy Over Time
           </h2>
           <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
@@ -161,7 +162,7 @@ function Cariden() {
                 <Line
                   type="monotone"
                   dataKey="accuracy"
-                  stroke="#22d3ee"
+                  stroke="#f97316"
                   strokeWidth={3}
                   dot={{ fill: "white" }}
                 />
@@ -199,7 +200,7 @@ function Cariden() {
               <>
                 <label
                   htmlFor="carImageUpload"
-                  className="block bg-gradient-to-r from-blue-500 to-green-600 text-white text-lg font-semibold px-6 py-3 rounded-lg cursor-pointer text-center transition-transform transform hover:scale-105 mb-4"
+                  className="block bg-orange-500 text-white text-lg font-semibold px-6 py-3 rounded-lg cursor-pointer text-center transition-transform transform hover:scale-105 mb-4"
                 >
                   Choose Car Image
                 </label>
@@ -215,7 +216,7 @@ function Cariden() {
   
             {selectedImage && (
               <button
-                className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105 mt-4"
+                className="w-full bg-orange-600 hover:bg-green-700 text-white text-lg font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105 mt-4"
                 onClick={identifyCarModel}
                 disabled={loading}
               >
@@ -237,10 +238,10 @@ function Cariden() {
                 <h2 className="text-2xl font-bold text-center mb-6">Car Details</h2>
                 {carModel ? (
                   <>
-                    <h3 className="text-xl font-bold text-blue-400 mb-2">{carModel}</h3>
+                    <h3 className="text-xl font-bold text-orange-400 mb-2">{carModel}</h3>
                     {!carInfo ? (
                       <button
-                        className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-6 py-1 rounded-lg transition-transform transform hover:scale-105"
+                        className="mt-4 bg-orange-600 hover:bg-orange-700 text-white text-lg font-semibold px-6 py-1 rounded-lg transition-transform transform hover:scale-105"
                         onClick={fetchDetails}
                         disabled={fetchingDetails}
                       >
@@ -263,7 +264,7 @@ function Cariden() {
                     )}
                     <Link
                       to="/carSpecs"
-                      className="block mt-4 text-blue-400 hover:underline text-sm font-semibold"
+                      className="block mt-4 text-orange-400 hover:underline text-sm font-semibold"
                     >
                       View More Car Specifications →
                     </Link>

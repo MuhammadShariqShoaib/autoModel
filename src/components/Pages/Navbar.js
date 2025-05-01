@@ -16,7 +16,7 @@ const Navbar = () => {
           <div className="text-white text-lg font-bold">
             AutoModel Insight
           </div>
-          <Link to='/feedback' className="bg-blue-500 rounded  p-2 text-white text-lg font-bold">
+          <Link to='/feedback' className="bg-orange-500 rounded  p-2 text-white text-lg font-bold">
             feedback 
           </Link>
         </div>
