@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@keyframes circularLoop {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  33% {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translateY(10px) scale(0.95);
+    opacity: 0.97;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.circular-card {
+  animation: circularLoop 3s infinite ease-in-out;
+}
