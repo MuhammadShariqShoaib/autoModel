@@ -14,7 +14,10 @@ import CarComparison from "./components/Pages/carComp";
 import Sidebar from "./components/Pages/Sidebar";
 import CarVariants from "./components/Pages/carVar";
 import ChatPage from "./components/Support/ChatBot";
-import { X, ChartBar, ChartArea} from "lucide-react";
+import { X, ChartArea} from "lucide-react";
+import PricingPage from "./components/PremiumPages/Offers";
+
+import CreditCardForm from "./components/PremiumPages/Card";
 
 function App() {
   const [chatOpen, setChatOpen] = useState(false);
@@ -37,6 +40,10 @@ function App() {
           <Route path="/Sidebar" element={<Sidebar />} />
           <Route path="/CarVariants" element={<CarVariants />} />
           <Route path="/feedback" element={<ChatSupportBlog />} />
+          <Route path="/premium" element={<PricingPage/>} />
+          <Route path="/Card" element={<CreditCardForm/>} />
+
+
 
         </Routes>
         

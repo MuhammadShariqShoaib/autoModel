@@ -47,7 +47,7 @@ const CarSpecs = () => {
               <div key={index} className="w-full sm:w-80 h-52 flex-shrink-0">
                 <img
                   src={src}
-                  alt={`${carData.Model} Image ${index + 1}`}
+                  alt={`${carData.Model} img ${index + 1}`}
                   className="w-full h-full object-cover rounded-lg shadow-md"
                   onError={(e) => (e.target.style.display = "none")} // Hide if image not found
                 />

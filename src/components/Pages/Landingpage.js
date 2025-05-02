@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, SignInButton, SignedOut, SignedIn } from "@clerk/clerk-react";
-import { FaCar, FaTools, FaLightbulb, FaUsers, FaChartLine, FaCube } from "react-icons/fa";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { FcGoogle } from "react-icons/fc";

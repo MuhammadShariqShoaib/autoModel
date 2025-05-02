@@ -1,49 +1,104 @@
-import React from 'react';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import React, { useEffect, useState } from 'react';
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useUser
+} from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const { user } = useUser();
+  const [credits, setCredits] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      const userId = user.id;
+      const username = user.fullName || user.username || 'Unknown User';
+      const email = user.primaryEmailAddress?.emailAddress;
+
+      localStorage.setItem('userId', userId);
+
+      // Register user
+      const registerUser = async () => {
+        try {
+          await fetch('http://localhost:5004/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, username, email })
+          });
+        } catch (error) {
+          console.error('Failed to register user:', error);
+        }
+      };
+
+      // Fetch credits
+      const fetchCredits = async () => {
+        try {
+          const res = await fetch(`http://localhost:5004/user/${userId}`);
+          const data = await res.json();
+          if (res.ok) {
+            setCredits(data.credits);
+          } else {
+            console.error('Failed to fetch credits:', data.error);
+          }
+        } catch (error) {
+          console.error('Error fetching credits:', error);
+        }
+      };
+
+      registerUser();
+      fetchCredits();
+    }
+  }, [user]);
+
   return (
-    <nav className="bg-gray-950 z-100 p-4">
-      <div className="container mx-auto flex items-center justify-between">
-        <Link to="/">
+    <nav className="bg-gray-950 z-50 shadow-md">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Left - Logo */}
         <div className="flex items-center space-x-2">
-          <img 
-            src="/logo.png" 
-            alt="AutoModel Insight Logo" 
-            className="w-12 h-12" 
-          />
-          <div className="text-white text-lg font-bold">
-            AutoModel Insight
-          </div>
-          <Link to='/feedback' className="bg-orange-500 rounded  p-2 text-white text-lg font-bold">
-            feedback 
+          <Link to="/" className="flex items-center space-x-2">
+            <img
+              src="/logo.png"
+              alt="AutoModel Insight Logo"
+              className="w-10 h-10"
+            />
+            <span className="text-white text-xl font-bold">AutoModel Insight</span>
           </Link>
         </div>
-        </Link>
+
+        {/* Right - Actions */}
         <div className="flex items-center space-x-4">
-          {/* <button className="text-white px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded">
-            Home
-          </button>
-          <button className="text-white px-4 py-2 bg-green-500 hover:bg-green-600 rounded">
-            Features
-          </button>
-          <button className="text-white px-4 py-2 bg-red-500 hover:bg-red-600 rounded">
-            Contact
-          </button> */}
+          {credits !== null && (
+            <div className="text-sm text-white bg-orange-800 px-3 py-1 rounded-lg">
+              Credits: <span className="font-bold text-green-400">{credits}</span>
+            </div>
+          )}
 
-          {/* Show User Profile & Sign Out when signed in */}
-          <div className='w-12 h-12  p-2 hover:opacity-80 transition-opacity'>
+          <Link
+            to="/feedback"
+            className="bg-orange-500 text-white px-4 py-1.5 rounded-lg font-medium hover:bg-orange-600 transition"
+          >
+            Feedback
+          </Link>
+
+          <Link
+            to="/premium"
+            className="bg-yellow-500 text-white px-4 py-1.5 rounded-lg font-medium hover:bg-yellow-600 transition"
+          >
+            Upgrade
+          </Link>
+
           <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-            
+            <div className="w-10 h-10 flex items-center justify-center">
+              <UserButton afterSignOutUrl="/" />
+            </div>
           </SignedIn>
-        </div>
 
-          {/* Show Sign In button when signed out */}
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="text-white px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded">
+              <button className="text-white px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium">
                 Sign In
               </button>
             </SignInButton>

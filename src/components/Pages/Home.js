@@ -1,34 +1,12 @@
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 import { FaCar, FaTools, FaLightbulb, FaUsers, FaChartLine, FaCube } from "react-icons/fa";
 
-const modules = [
-  {
-    id: 1,
-    name: 'Car Make, Model & Variant Detection',
-    description: 'Detect the make, model, and variant of any car from a picture.',
-    image: '1.png',
-    route: '/car-detection',
-  },
-  {
-    id: 2,
-    name: '3D Model Customization',
-    description: 'View and modify 3D models of cars with personalized features.',
-    image: '2.jpg',
-    route: '/ThreeDModelBlog',
-  },
-  {
-    id: 3,
-    name: 'Customer Support & Assistance',
-    description: 'Get help and support for any inquiries or issues you may have.',
-    image: 'cars.jpg',
-    route: '/ChatSupportBlog',
-  }
-];
+
 
 const faqs = [
   { question: 'How accurate is the AI detection?', answer: 'Our AI models achieve over 95% accuracy in detecting car make, model, and variant.' },
@@ -43,7 +21,7 @@ const reviews = [
 ];
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   const features = [

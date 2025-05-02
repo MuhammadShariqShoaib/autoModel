@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaCar, FaBalanceScale, FaListAlt, FaDollarSign, FaBars, FaTimes } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 
 const Sidebar = () => {

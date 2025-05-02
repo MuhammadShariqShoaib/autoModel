@@ -5,7 +5,11 @@ import App from "./App";
 import './index.css'
 import { ClerkProvider } from "@clerk/clerk-react";
 // import reportWebVitals from './components/Pages/reportWebVitals';
-const clerk_key = "pk_test_cG9wdWxhci1iZWV0bGUtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA";
+// const clerk_key = "pk_test_cG9wdWxhci1iZWV0bGUtNTMuY2xlcmsuYWNjb3VudHMuZGV2JA";
+
+const clerk_key = "pk_test_c2V0LW11dHQtNTYuY2xlcmsuYWNjb3VudHMuZGV2JA";
+
+
 
 console.log(clerk_key)
 if(!clerk_key){

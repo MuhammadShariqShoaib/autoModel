@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaRobot, FaUser, FaPaperPlane } from "react-icons/fa";
-import axios from "axios";
 
 const ChatPage = () => {
   const [selectedBot, setSelectedBot] = useState(null);
